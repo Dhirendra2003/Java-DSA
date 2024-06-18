@@ -1,0 +1,112 @@
+Certainly! JavaServer Pages (JSP) and Servlets are fundamental technologies in Java EE (Enterprise Edition) for developing web applications. They work together to provide a dynamic web content generation framework. Here's a comprehensive overview of JSP and Servlets for your interview preparation:
+
+### 1. **Servlets**
+
+Servlets are Java programs that extend the capabilities of servers and respond to requests from clients. They handle the request-response model for web applications running on the server side. Key points about Servlets include:
+
+- **Lifecycle:** Servlets follow a lifecycle managed by the container (like Tomcat or Jetty):
+  - **Initialization:** Servlet is loaded and initialized.
+  - **Service:** Handles client requests (typically through `doGet()` and `doPost()` methods).
+  - **Destroy:** Servlet is removed from service and destroyed.
+
+- **Mapping:** Servlets are mapped to URLs using `web.xml` deployment descriptor or annotations (`@WebServlet`).
+
+- **Request and Response:** Servlets interact with clients via `HttpServletRequest` and `HttpServletResponse` objects.
+
+- **Example Servlet:**
+  ```java
+  import javax.servlet.*;
+  import javax.servlet.http.*;
+  import java.io.*;
+
+  public class HelloServlet extends HttpServlet {
+      public void doGet(HttpServletRequest request, HttpServletResponse response)
+              throws ServletException, IOException {
+          response.setContentType("text/html");
+          PrintWriter out = response.getWriter();
+          out.println("<html><body>");
+          out.println("<h1>Hello Servlet</h1>");
+          out.println("</body></html>");
+      }
+  }
+  ```
+
+### 2. **JavaServer Pages (JSP)**
+
+JSP is a technology that helps developers embed Java code in HTML pages. It simplifies the process of developing web pages that dynamically generate content. Key points about JSP include:
+
+- **Lifecycle:** JSP pages are compiled into servlets the first time they are requested and then executed like servlets.
+
+- **Syntax:** JSP uses `<% %>` tags for Java code and `<%= %>` for expressions.
+
+- **Directives:** Control aspects of the JSP page processing (`page`, `include`, `taglib`).
+
+- **Actions:** Dynamically insert content (`<jsp:include>`, `<jsp:forward>`, `<jsp:useBean>`).
+
+- **Example JSP:**
+  ```jsp
+  <%@ page language="java" contentType="text/html; charset=UTF-8"
+      pageEncoding="UTF-8"%>
+  <!DOCTYPE html>
+  <html>
+  <head>
+      <meta charset="UTF-8">
+      <title>Hello JSP</title>
+  </head>
+  <body>
+      <h1>Hello JSP</h1>
+      <p>Current time: <%= new java.util.Date() %></p>
+  </body>
+  </html>
+  ```
+
+### 3. **JSP vs. Servlets**
+
+- **Purpose:** Servlets provide a robust framework for handling request-response lifecycle, whereas JSP allows embedding Java code in HTML for dynamic content generation.
+
+- **Structure:** Servlets are Java classes implementing specific interfaces (`HttpServlet`), while JSP is an HTML-like page with embedded Java code.
+
+- **Maintenance:** Servlets are more suitable for complex backend logic, whereas JSP simplifies front-end design with server-side processing.
+
+### 4. **Model-View-Controller (MVC) Architecture**
+
+- **Model:** Represents the data of the application and logic to manipulate the data.
+
+- **View:** Presents the data to the user (often using JSP for dynamic content rendering).
+
+- **Controller:** Handles user input, invokes model updates, and selects the view to display.
+
+### 5. **Deployment and Configuration**
+
+- **Deployment:** Both Servlets and JSP files are typically packaged in a WAR (Web ARchive) file and deployed to a servlet container like Tomcat or Jetty.
+
+- **Configuration:** Servlets are configured using `web.xml` deployment descriptor or annotations (`@WebServlet`). JSP configurations are set in the JSP file itself (`<%@ page ... %>` directives).
+
+### 6. **Advanced Topics**
+
+- **EL (Expression Language):** Simplifies access to objects stored in application, session, request, and page contexts within JSP pages.
+
+- **JSTL (JSP Standard Tag Library):** Provides a set of tags used to control the flow in JSP pages (looping, conditional logic, etc.).
+
+- **Custom Tags:** Allows developers to create reusable components that encapsulate functionality.
+
+### 7. **Best Practices**
+
+- **Separation of Concerns:** Use Servlets for backend processing and JSP for presentation logic.
+
+- **Avoid Scriptlets:** Minimize Java code in JSP pages for better maintainability and readability.
+
+- **Use MVC Design Pattern:** Organize your code into models, views, and controllers for scalability and maintainability.
+
+### 8. **Common Interview Questions**
+
+- What is the difference between Servlets and JSP?
+- Explain the lifecycle of a Servlet.
+- How do you handle exceptions in Servlets?
+- What are JSP directives? Name a few.
+- How does JSP handle multithreading?
+- What are the advantages of JSTL over scriptlets?
+- Explain the role of web.xml in a Java web application.
+- How do you pass data from Servlet to JSP?
+
+Mastering Servlets and JSP is crucial for building robust Java web applications. Understanding their fundamentals, lifecycle, syntax, and best practices will help you excel in your interview preparation.
